@@ -1,62 +1,59 @@
 ﻿#include"Game.h"
 
 namespace fr {
-
+	//コンストラクタ
 	Game::Game() {
 
-		mode = 0;
 		font = Font{ 48 };
 		stage = new Stage();
+		corrent = &Game::title;
 	}
-
+	//タイトルシーン
 	void Game::title() {
 
 		stage->draw();
-		font(U"Flappy Riman").drawAt(scnSize.x / 2,
-				scnSize.y / 8);
+		font(U"Flappy Riman").drawAt(
+			ScnSize.x / 2, ScnSize.y / 8);
 		if (KeySpace.down()) {
-			++mode;
+			corrent = &Game::play;
 		}
 	}
-
-	void Game::game() {
+	//ゲームプレイシーン
+	void Game::play() {
 
 		if (stage->update()) {
-			++mode;
+			corrent = &Game::gameover;
 		}
-		font(stage->draw()).drawAt(scnSize.x / 2,
-			scnSize.y / 8);
+		font(stage->draw()).drawAt(
+			ScnSize.x / 2, ScnSize.y / 8);
 	}
+	//ゲームオーバーシーン
+	void Game::gameover() {
 
+		stage->draw();
+		if (stage->gameover()) {
+			corrent = &Game::result;
+		}
+	}
+	//リザルトシーン
 	void Game::result() {
 
-		font(stage->draw()).drawAt(scnSize.x / 2,
-			scnSize.y / 8 + 100);
-		font(U"Result").drawAt(scnSize.x / 2,
-				scnSize.y / 8);
+		font(stage->draw()).drawAt(
+			ScnSize.x / 2, ScnSize.y / 8 + 100);
+		font(U"Result").drawAt(
+			ScnSize.x / 2, ScnSize.y / 8);
 		if (KeySpace.down()) {
 			delete stage;
 			stage = new Stage();
-			mode = 0;
+			corrent = &Game::title;
 		}
 	}
-
+	//ゲームの画面更新
 	void Game::update() {
 
-		if (mode == 0) {
-			title();
-		}
-		else if (mode == 1) {
-			game();
-		}
-		else if (mode == 2) {
-			result();
-		}
-		else {
-			System::Exit();
-		}
+		(this->*corrent)();
 	}
-
+	//デストラクタ
 	Game::~Game() {
 
 		delete stage;

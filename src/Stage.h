@@ -3,7 +3,7 @@
 #include"Block.h"
 
 namespace fr {
-
+	//オブジェクトを制御するStageクラス
 	class Stage {
 
 	private:
@@ -11,18 +11,18 @@ namespace fr {
 		Vec2 size;
 		Image background;
 		Player* player;
-		Block* block[blockNum];
+		Block* block[BlockNum];
 		Vec2 blockSize;
 		int count;
 		int score;
-		double blockPosX[blockNum];
+		double blockPosX[BlockNum];
 
 	private:
-		Image paintBg();
+		Image paintBackground();
 		void buildBlock();
 		void breakBlock();
 		void flyPlayer();
-		bool checkCol();
+		bool checkCollision();
 		void countScore();
 
 	public:
@@ -30,5 +30,6 @@ namespace fr {
 		~Stage();
 		int draw();
 		bool update();
+		bool gameover();
 	};
 }

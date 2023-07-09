@@ -2,17 +2,18 @@
 #include"Stage.h"
 
 namespace fr {
-
+	//ゲーム本体であるGameクラス
 	class Game {
 
 	private:
-		int mode;
 		Font font;
 		Stage* stage;
+		void (Game::* corrent)();
 
 	private:
 		void title();
-		void game();
+		void play();
+		void gameover();
 		void result();
 
 	public:
