@@ -1,17 +1,18 @@
-﻿# include <Siv3D.hpp> // OpenSiv3D v0.6.6
+﻿# include <Siv3D.hpp> // OpenSiv3D v0.6.10
 #include"Game.h"
 
-void Main() {
-
-	Scene::Resize(fr::scnSize.x, fr::scnSize.y);
+void Main()
+{
+	//ウィンドウを初期化
+	Scene::Resize(fr::ScnSize.x, fr::ScnSize.y);
 	Scene::SetBackground(ColorF{ 0.5f,0.8f,0.9f });
-
+	//Gameインスタンス生成
 	fr::Game* game = new fr::Game();
-
+	//更新頻度を60fpsに固定
 	const int FPS = 60;
 	Stopwatch sw;
 	sw.start();
-
+	//メインループ
 	while (System::Update()) {
 		game->update();
 
@@ -27,23 +28,5 @@ void Main() {
 //
 // - [デバッグ] メニュー → [デバッグの開始] でプログラムを実行すると、[出力] ウィンドウに詳細なログが表示され、エラーの原因を探せます。
 //
-// - Visual Studio を更新した直後は、プログラムのリビルド（[ビルド]メニュー → [ソリューションのリビルド]）が必要です。
-//
-// チュートリアル
-// https://siv3d.github.io/ja-jp/tutorial/tutorial/
-//
-// Tutorial
-// https://siv3d.github.io/tutorial/tutorial/
-//
-// Siv3D コミュニティへの参加（Discord などで気軽に質問や交流, 最新情報の入手ができます）
-// https://siv3d.github.io/ja-jp/community/community/
-//
-// Siv3D User Community
-// https://siv3d.github.io/community/community/
-//
-// 新機能の提案やバグの報告 | Feedback
-// https://siv3d.github.io/ja-jp/develop/report/
-//
-// Sponsoring Siv3D
-// https://github.com/sponsors/Reputeless
+// - Visual Studio を更新した直後は、プログラムのリビルド（[ビルド]メニュー → [ソリューションのリビルド]）が必要な場合があります。
 //

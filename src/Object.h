@@ -1,13 +1,13 @@
 ﻿#pragma once
 
 namespace fr {
-
-	const Vec2 scnSize = Vec2{ 640,480 };
-	const Vec2 zeroVec2 = Vec2{ 0,0 };
-	const int blockNum = 10;
-
+	//定数
+	const Vec2 ScnSize = Vec2{ 640,480 };
+	const Vec2 ZeroVec2 = Vec2{ 0,0 };
+	const int BlockNum = 10;
+	//PlayerとBlockが継承するObjectクラス
 	class Object {
-
+		//各種パラメータ
 	protected:
 		Texture texture;
 		Vec2 size;
@@ -17,14 +17,14 @@ namespace fr {
 		int collisionSize;
 		double degree;
 		bool isActive;
-
+		//コンストラクタやイニシャライザなど
 	public:
 		Object();
 		Object(Vec2);
 		virtual ~Object();
 		void initialize();
 		void update();
-
+		//getterとsetter
 		inline Texture getTexture() const {
 
 			return texture;
