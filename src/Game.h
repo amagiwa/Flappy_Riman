@@ -8,7 +8,7 @@ namespace fr {
 	private:
 		Font font;
 		Stage* stage;
-		void (Game::* corrent)();
+		void (Game::* current)();
 
 	private:
 		void title();
